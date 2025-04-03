@@ -1,25 +1,26 @@
 package ua.volivach.library.models;
 
-import jakarta.validation.constraints.Min;
-import jakarta.validation.constraints.NotEmpty;
-import jakarta.validation.constraints.Pattern;
+import jakarta.validation.constraints.*;
 
 public class Person {
     private int id;
 
     @NotEmpty(message = "Name should not be empty")
     @Pattern(regexp = "[A-Z][a-z]+ [A-Z][a-z]+ [A-Z][a-z]+", message = "Full name should be valid in next format: Name Surname Patronymic")
-    private String fullName;
+    private String fullname;
 
-    @NotEmpty(message = "Birth year should not be empty")
     @Min(value = 1900, message = "Birth year should be greater than 1900")
-    private int birthYear;
+    @Max(value = 2025, message = "Birth year should be not greater than 2025")
+    @NotNull
+    private int birthyear;
 
-    public Person(int id, String fullName, int birthYear) {
+    public Person(int id, String fullname, int birthyear) {
         this.id = id;
-        this.fullName = fullName;
-        this.birthYear = birthYear;
+        this.fullname = fullname;
+        this.birthyear = birthyear;
     }
+
+    public Person(){};
 
     public int getId() {
         return id;
@@ -29,19 +30,19 @@ public class Person {
         this.id = id;
     }
 
-    public String getFullName() {
-        return fullName;
+    public String getFullname() {
+        return fullname;
     }
 
-    public void setFullName(String fullName) {
-        this.fullName = fullName;
+    public void setFullname(String fullname) {
+        this.fullname = fullname;
     }
 
-    public int getBirthYear() {
-        return birthYear;
+    public int getBirthyear() {
+        return birthyear;
     }
 
-    public void setBirthYear(int birthYear) {
-        this.birthYear = birthYear;
+    public void setBirthyear(int birthyear) {
+        this.birthyear = birthyear;
     }
 }

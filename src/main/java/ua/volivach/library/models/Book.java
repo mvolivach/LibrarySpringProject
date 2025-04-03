@@ -1,8 +1,6 @@
 package ua.volivach.library.models;
 
-import jakarta.validation.constraints.Min;
-import jakarta.validation.constraints.NotEmpty;
-import jakarta.validation.constraints.Pattern;
+import jakarta.validation.constraints.*;
 
 public class Book {
     private int id;
@@ -14,8 +12,8 @@ public class Book {
     @Pattern(regexp = "[A-Z][a-z]+ [A-Z][a-z]+ [A-Z][a-z]+", message = "Author should be valid in next format: Name Surname Patronymic")
     private String author;
 
-    @NotEmpty(message = "Year should not be empty")
     @Min(value = 0, message = "Year should be greater than 0")
+    @Max(value = 2025, message = "Birth year should be not greater than 2025")
     private int year;
 
     public Book(int id, String name, String author, int year) {
@@ -24,6 +22,8 @@ public class Book {
         this.author = author;
         this.year = year;
     }
+
+    public Book(){}
 
     public int getId() {
         return id;
